@@ -1,4 +1,4 @@
-package com.employee.EmployeeAlpicatin.Entity;
+package com.employee.EmployeeAlpicatin.entity;
 
 public class Employee {
     int employeeID;
