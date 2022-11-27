@@ -10,4 +10,28 @@ public class Employee {
         this.employeeName = employeeName;
         this.employeeCity = employeeCity;
     }
+
+    public int getEmployeeID() {
+        return employeeID;
+    }
+
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    public String getEmployeeCity() {
+        return employeeCity;
+    }
+
+    public void setEmployeeCity(String employeeCity) {
+        this.employeeCity = employeeCity;
+    }
 }
