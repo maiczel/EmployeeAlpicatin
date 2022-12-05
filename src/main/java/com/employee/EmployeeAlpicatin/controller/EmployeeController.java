@@ -4,9 +4,7 @@ import com.employee.EmployeeAlpicatin.entity.Employee;
 import com.employee.EmployeeAlpicatin.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,5 +27,10 @@ public class EmployeeController {
 
     public Employee findAnEmployee(@PathVariable int id) {
         return employeeService.getAnEmployee(id);
+    }
+
+    @RequestMapping(value = "/employees", method = RequestMethod.POST)
+    public void createEmployee(@RequestBody Employee employee){
+        employeeService.createEmployee(employee);
     }
 }
