@@ -1,22 +1,22 @@
 package com.employee.EmployeeAlpicatin.entity;
 
 public class Employee {
-    int employeeID;
+    int employeeId;
     String employeeName;
     String employeeCity;
 
-    public Employee(int employeeID, String employeeName, String employeeCity) {
-        this.employeeID = employeeID;
+    public Employee(int employeeId, String employeeName, String employeeCity) {
+        this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.employeeCity = employeeCity;
     }
 
-    public int getEmployeeID() {
-        return employeeID;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getEmployeeName() {
