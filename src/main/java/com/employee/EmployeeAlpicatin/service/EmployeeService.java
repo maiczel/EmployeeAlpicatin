@@ -3,6 +3,7 @@ package com.employee.EmployeeAlpicatin.service;
 import com.employee.EmployeeAlpicatin.entity.Employee;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +28,7 @@ public class EmployeeService {
     }
 
     public void updateEmployee(Employee employee) {
-        List<Employee> tempEmployee = new ArrayList<>();
+        ArrayList<Employee> tempEmployee = new ArrayList<>();
         for (Employee emp : employeeList) {
             if (emp.getEmployeeId() == employee.getEmployeeId()) {
                 emp.setEmployeeName(employee.getEmployeeName());
@@ -36,6 +37,17 @@ public class EmployeeService {
             tempEmployee.add(emp);
         }
         this.employeeList = tempEmployee;
+
+    }
+
+    public void deleteEmployee(int id) {
+        ArrayList<Employee> tempEmployee = new ArrayList<>();
+        for (Employee emp : employeeList){
+            if (emp.getEmployeeId() == id)
+                continue;
+        tempEmployee.add(emp);
+    }
+    this.employeeList = tempEmployee;
 
     }
 }
