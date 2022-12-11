@@ -33,7 +33,7 @@ public class EmployeeService {
     }
 
     public void updateEmployee(Employee employee) {
-        ArrayList<Employee> tempEmployee = new ArrayList<>();
+        /*ArrayList<Employee> tempEmployee = new ArrayList<>();
         for (Employee emp : employeeList) {
             if (emp.getEmployeeId() == employee.getEmployeeId()) {
                 emp.setEmployeeName(employee.getEmployeeName());
@@ -41,18 +41,20 @@ public class EmployeeService {
             }
             tempEmployee.add(emp);
         }
-        this.employeeList = tempEmployee;
+        this.employeeList = tempEmployee;*/
+        employeeRepository.save(employee);
 
     }
 
     public void deleteEmployee(int id) {
-        ArrayList<Employee> tempEmployee = new ArrayList<>();
+        /*ArrayList<Employee> tempEmployee = new ArrayList<>();
         for (Employee emp : employeeList) {
             if (emp.getEmployeeId() == id)
                 continue;
             tempEmployee.add(emp);
         }
-        this.employeeList = tempEmployee;
+        this.employeeList = tempEmployee;*/
+        employeeRepository.delete(employeeRepository.getReferenceById(id));
 
     }
 }
