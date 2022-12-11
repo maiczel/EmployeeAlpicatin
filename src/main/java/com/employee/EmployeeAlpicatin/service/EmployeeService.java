@@ -1,6 +1,8 @@
 package com.employee.EmployeeAlpicatin.service;
 
 import com.employee.EmployeeAlpicatin.entity.Employee;
+import com.employee.EmployeeAlpicatin.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
@@ -14,6 +16,8 @@ public class EmployeeService {
             new Employee(1, "First Employee", "Washington"),
             new Employee(2, "Second Employee", "New York")
     ));
+    @Autowired
+    EmployeeRepository employeeRepository;
 
     public List<Employee> getAllEmployees() {
         return employeeList;
@@ -24,7 +28,8 @@ public class EmployeeService {
     }
 
     public void createEmployee(Employee employee) {
-        employeeList.add(employee);
+        //employeeList.add(employee);
+        employeeRepository.save(employee);
     }
 
     public void updateEmployee(Employee employee) {
@@ -42,12 +47,12 @@ public class EmployeeService {
 
     public void deleteEmployee(int id) {
         ArrayList<Employee> tempEmployee = new ArrayList<>();
-        for (Employee emp : employeeList){
+        for (Employee emp : employeeList) {
             if (emp.getEmployeeId() == id)
                 continue;
-        tempEmployee.add(emp);
-    }
-    this.employeeList = tempEmployee;
+            tempEmployee.add(emp);
+        }
+        this.employeeList = tempEmployee;
 
     }
 }
