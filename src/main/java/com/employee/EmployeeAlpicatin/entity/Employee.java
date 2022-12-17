@@ -1,10 +1,7 @@
 package com.employee.EmployeeAlpicatin.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Employee {
@@ -13,6 +10,10 @@ public class Employee {
     int employeeId;
     String employeeName;
     String employeeCity;
+
+    @OneToOne
+    @JoinColumn(name ="fk_spouse")
+    private Spouse spouse;
 
     public Employee() {
 
@@ -47,5 +48,13 @@ public class Employee {
 
     public void setEmployeeCity(String employeeCity) {
         this.employeeCity = employeeCity;
+    }
+
+    public Spouse getSpouse() {
+        return spouse;
+    }
+
+    public void setSpouse(Spouse spouse) {
+        this.spouse = spouse;
     }
 }

@@ -7,17 +7,22 @@ import jakarta.persistence.*;
 @Table(name = "spouse")
 public class Spouse {
 
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id;
     private String name;
     private String mobileNo;
     private int age;
 
+    @OneToOne(mappedBy = "spouse")
+    private Employee employee;
+
     public Spouse(String name, String mobileNo, int age) {
         this.name = name;
         this.mobileNo = mobileNo;
         this.age = age;
+
     }
 
     public int getId() {
