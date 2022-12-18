@@ -21,6 +21,9 @@ public class Employee {
     @OneToMany
     private List<Addresses> addresses;
 
+    @ManyToMany
+    private List<Project> projects;
+
 
     public Employee() {
 
