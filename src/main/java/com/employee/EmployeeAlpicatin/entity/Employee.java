@@ -3,6 +3,8 @@ package com.employee.EmployeeAlpicatin.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Employee {
     @Id
@@ -14,6 +16,11 @@ public class Employee {
     @OneToOne
     @JoinColumn(name ="fk_spouse")
     private Spouse spouse;
+
+
+    @OneToMany
+    private List<Addresses> addresses;
+
 
     public Employee() {
 
@@ -56,5 +63,13 @@ public class Employee {
 
     public void setSpouse(Spouse spouse) {
         this.spouse = spouse;
+    }
+
+    public List<Addresses> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Addresses> addresses) {
+        this.addresses = addresses;
     }
 }
