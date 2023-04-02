@@ -2,6 +2,8 @@ package com.employee.EmployeeAlpicatin.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "project")
 
@@ -13,9 +15,20 @@ public class Project {
     private String name;
     private String clientName;
 
+    @ManyToMany(mappedBy = "projects")
+    private List<Employee> employees;
+
     public Project(String name, String clientName) {
         this.name = name;
         this.clientName = clientName;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 
     public int getId() {

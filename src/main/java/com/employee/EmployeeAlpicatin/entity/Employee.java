@@ -14,7 +14,7 @@ public class Employee {
     String employeeCity;
 
     @OneToOne
-    @JoinColumn(name ="fk_spouse")
+    @JoinColumn(name = "fk_spouse")
     private Spouse spouse;
 
 
@@ -22,6 +22,9 @@ public class Employee {
     private List<Addresses> addresses;
 
     @ManyToMany
+    @JoinTable(name = "employee_project",
+            joinColumns = @JoinColumn(name = "fk_employee"),
+            inverseJoinColumns = @JoinColumn(name = "fk_project"))
     private List<Project> projects;
 
 
@@ -74,5 +77,15 @@ public class Employee {
 
     public void setAddresses(List<Addresses> addresses) {
         this.addresses = addresses;
+    }
+
+
+    public void removeProject(Project project){
+        this.projects.remove(project);
+        project.getEmployees().remove(project);
+    }
+    public void addProject(Project project){
+        this.projects.add(project);
+        project.getEmployees().add(this);
     }
 }
