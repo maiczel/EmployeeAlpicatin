@@ -18,6 +18,9 @@ public class Spouse {
     @OneToOne(mappedBy = "spouse")
     private Employee employee;
 
+    public Spouse() {
+    }
+
     public Spouse(String name, String mobileNo, int age) {
         this.name = name;
         this.mobileNo = mobileNo;

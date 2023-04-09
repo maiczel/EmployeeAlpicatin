@@ -13,24 +13,23 @@ public class Employee {
     String employeeName;
     String employeeCity;
 
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_spouse")
     private Spouse spouse;
 
-
-    @OneToMany
+    @OneToMany (cascade = CascadeType.ALL)
     private List<Addresses> addresses;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "employee_project",
             joinColumns = @JoinColumn(name = "fk_employee"),
             inverseJoinColumns = @JoinColumn(name = "fk_project"))
     private List<Project> projects;
 
-
     public Employee() {
 
     }
+
 
     public Employee(int employeeId, String employeeName, String employeeCity) {
 
@@ -79,12 +78,20 @@ public class Employee {
         this.addresses = addresses;
     }
 
+    public List<Project> getProjects() {
+        return projects;
+    }
 
-    public void removeProject(Project project){
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public void removeProject(Project project) {
         this.projects.remove(project);
         project.getEmployees().remove(project);
     }
-    public void addProject(Project project){
+
+    public void addProject(Project project) {
         this.projects.add(project);
         project.getEmployees().add(this);
     }

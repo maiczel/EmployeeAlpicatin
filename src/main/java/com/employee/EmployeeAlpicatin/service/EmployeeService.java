@@ -1,5 +1,6 @@
 package com.employee.EmployeeAlpicatin.service;
 
+import com.employee.EmployeeAlpicatin.entity.Addresses;
 import com.employee.EmployeeAlpicatin.entity.Employee;
 import com.employee.EmployeeAlpicatin.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,19 @@ public class EmployeeService {
         return employeeRepository.findById(id).orElseThrow(() ->new RuntimeException("not found"));
     }
 
+
     public void createEmployee(Employee employee) {
         //employeeList.add(employee);
+        ArrayList<Addresses> addressessArrayList = new ArrayList<>();
+        for (Addresses address : employee.getAddresses()){
+            addressessArrayList.add(new Addresses(address.getLine1(),
+            address.getLine2(),
+            address.getZipCode(),
+            address.getCity(),
+            address.getState(),
+            address.getCountry(),employee));
+        }
+        employee.setAddresses(addressessArrayList);
         employeeRepository.save(employee);
     }
 

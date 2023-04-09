@@ -1,11 +1,13 @@
 package com.employee.EmployeeAlpicatin.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "address")
 public class Addresses {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,18 +19,21 @@ public class Addresses {
     private String state;
     private String country;
 
+    @JsonIgnore
     @ManyToOne
     private Employee employee;
 
+    public Addresses() {
+    }
 
-
-    public Addresses(String line1, String line2, String zipCode, String city, String state, String country) {
+    public Addresses(String line1, String line2, String zipCode, String city, String state, String country,Employee employee) {
         this.line1 = line1;
         this.line2 = line2;
         this.zipCode = zipCode;
         this.city = city;
         this.state = state;
         this.country = country;
+        this.employee = employee;
     }
 
     public int getId() {
