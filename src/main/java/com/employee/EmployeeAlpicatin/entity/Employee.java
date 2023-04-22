@@ -13,14 +13,14 @@ public class Employee {
     String employeeName;
     String employeeCity;
 
-    @OneToOne (cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "fk_spouse")
     private Spouse spouse;
 
-    @OneToMany (cascade = CascadeType.ALL)
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Addresses> addresses;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinTable(name = "employee_project",
             joinColumns = @JoinColumn(name = "fk_employee"),
             inverseJoinColumns = @JoinColumn(name = "fk_project"))
@@ -29,7 +29,6 @@ public class Employee {
     public Employee() {
 
     }
-
 
     public Employee(int employeeId, String employeeName, String employeeCity) {
 
@@ -76,6 +75,7 @@ public class Employee {
 
     public void setAddresses(List<Addresses> addresses) {
         this.addresses = addresses;
+
     }
 
     public List<Project> getProjects() {

@@ -18,16 +18,12 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     //@RequestMapping("/employees")
+    //@RequestMapping(value = "/employees",method = RequestMethod.GET)
     @GetMapping("/employees")
-    public List<Employee> findAllEmployees() {
-
-        return employeeService.getAllEmployees();
-
-    }
+    public List<Employee> findAllEmployees() { return employeeService.getAllEmployees();}
 
     //@RequestMapping("/employees/{id}")
     @GetMapping("/employees/{id}")
-
     public Employee findAnEmployee(@PathVariable int id) {
         return employeeService.getAnEmployee(id);
     }

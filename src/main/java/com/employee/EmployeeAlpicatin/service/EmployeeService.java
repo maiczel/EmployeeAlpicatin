@@ -2,9 +2,11 @@ package com.employee.EmployeeAlpicatin.service;
 
 import com.employee.EmployeeAlpicatin.entity.Addresses;
 import com.employee.EmployeeAlpicatin.entity.Employee;
+import com.employee.EmployeeAlpicatin.entity.Project;
 import com.employee.EmployeeAlpicatin.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
+
     public Employee getAnEmployee(int id) {
         //return employeeList.stream().filter(e -> (e.getEmployeeId() == id)).findFirst().get();
         return employeeRepository.findById(id).orElseThrow(() ->new RuntimeException("not found"));
@@ -33,16 +36,17 @@ public class EmployeeService {
 
     public void createEmployee(Employee employee) {
         //employeeList.add(employee);
-        ArrayList<Addresses> addressessArrayList = new ArrayList<>();
-        for (Addresses address : employee.getAddresses()){
-            addressessArrayList.add(new Addresses(address.getLine1(),
-            address.getLine2(),
-            address.getZipCode(),
-            address.getCity(),
-            address.getState(),
-            address.getCountry(),employee));
+        ArrayList<Addresses> addressesArrayList = new ArrayList<>();
+
+        for (Addresses addresses : employee.getAddresses()) {
+            addressesArrayList.add((new Addresses(addresses.getLine1(),
+                    addresses.getLine2(),
+                    addresses.getZipCode(),
+                    addresses.getCity(),
+                    addresses.getState(),
+                    addresses.getCountry(), employee)));
         }
-        employee.setAddresses(addressessArrayList);
+        employee.setAddresses(addressesArrayList);
         employeeRepository.save(employee);
     }
 
@@ -68,7 +72,7 @@ public class EmployeeService {
             tempEmployee.add(emp);
         }
         this.employeeList = tempEmployee;*/
-        employeeRepository.delete(employeeRepository.getReferenceById(id));
+        employeeRepository.delete(employeeRepository.getById(id));
 
     }
 }
