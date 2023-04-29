@@ -18,22 +18,22 @@ public class EmployeeAlpicatinApplication {
 		SpringApplication.run(EmployeeAlpicatinApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner initialCreate(EmployeeService employeeService){
-		return(args) ->{
-
-			Address address1 = new Address("Line 1","Line ","ZipCode", "City1","State1","Country1");
-			Project project1 = new Project("Name1","Client Name1");
-			Spouse spouse1 = new Spouse("Name", "Mobile1", 30);
-			Employee employee = new Employee("Employee1", "City1");
-			employee.addProject(project1);
-			employee.addAddress(address1);
-			employee.setSpouse(spouse1);
-
-			employeeService.createEmployee(employee);
-
-			System.out.println("Getting an employee");
-			Employee employee1 = employeeService.getAnEmployee(1);
-		};
-	}
+//	@Bean
+//	public CommandLineRunner initialCreate(EmployeeService employeeService){
+//		return(args) ->{
+//
+//			Address address1 = new Address("Line 1","Line ","ZipCode", "City1","State1","Country1");
+//			Project project1 = new Project("Name1","Client Name1");
+//			Spouse spouse1 = new Spouse("Name", "Mobile1", 30);
+//			Employee employee = new Employee("Employee1", "City1");
+//			employee.addProject(project1);
+//			employee.addAddress(address1);
+//			employee.setSpouse(spouse1);
+//
+//			employeeService.createEmployee(employee);
+//
+//			System.out.println("Getting an employee");
+//			Employee employee1 = employeeService.getAnEmployee(1);
+//		};
+//	}
 }

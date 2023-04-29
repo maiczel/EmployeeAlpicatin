@@ -2,15 +2,20 @@ package com.employee.EmployeeAlpicatin.service;
 
 import com.employee.EmployeeAlpicatin.entity.Address;
 import com.employee.EmployeeAlpicatin.entity.Employee;
+import com.employee.EmployeeAlpicatin.entity.Project;
 import com.employee.EmployeeAlpicatin.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 @Service
+@Transactional
 public class EmployeeService {
     List<Employee> employeeList = new ArrayList<>(Arrays.asList(
             new Employee(1, "First Employee", "Washington"),
@@ -27,8 +32,15 @@ public class EmployeeService {
 
     public Employee getAnEmployee(int id) {
         //return employeeList.stream().filter(e -> (e.getEmployeeId() == id)).findFirst().get();
-        return employeeRepository.findById(id).orElseThrow(() ->new RuntimeException("not found"));
+        Employee employee = employeeRepository.findById(id).orElseThrow(() ->new RuntimeException("not found"));
+        System.out.println("Fetching Projects in Service class");
+        Set<Project> projects = employee.getProjects();
+        for(Project p: projects)
+            System.out.println(p.getClientName());
+        return employee;
     }
+
+
 
 
     public void createEmployee(Employee employee) {
