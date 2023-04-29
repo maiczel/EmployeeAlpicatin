@@ -6,9 +6,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "address")
-public class Addresses {
-
-
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -23,10 +21,19 @@ public class Addresses {
     @ManyToOne
     private Employee employee;
 
-    public Addresses() {
+    public Address() {
+    }
+    public Address(String line1, String line2, String zipCode, String city, String state, String country) {
+        this.line1 = line1;
+        this.line2 = line2;
+        this.zipCode = zipCode;
+        this.city = city;
+        this.state = state;
+        this.country = country;
     }
 
-    public Addresses(String line1, String line2, String zipCode, String city, String state, String country, Employee employee) {
+
+    public Address(String line1, String line2, String zipCode, String city, String state, String country, Employee employee) {
         this.line1 = line1;
         this.line2 = line2;
         this.zipCode = zipCode;

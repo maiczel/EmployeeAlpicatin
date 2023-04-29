@@ -3,7 +3,10 @@ package com.employee.EmployeeAlpicatin.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Employee {
@@ -18,16 +21,21 @@ public class Employee {
     private Spouse spouse;
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private List<Addresses> addresses;
+    private List<Address> addresses;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinTable(name = "employee_project",
             joinColumns = @JoinColumn(name = "fk_employee"),
             inverseJoinColumns = @JoinColumn(name = "fk_project"))
-    private List<Project> projects;
+    private Set<Project> projects = new HashSet<>();
 
     public Employee() {
 
+    }
+
+    public Employee(String employeeName, String employeeCity) {
+        this.employeeName = employeeName;
+        this.employeeCity = employeeCity;
     }
 
     public Employee(int employeeId, String employeeName, String employeeCity) {
@@ -69,20 +77,20 @@ public class Employee {
         this.spouse = spouse;
     }
 
-    public List<Addresses> getAddresses() {
+    public List<Address> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(List<Addresses> addresses) {
+    public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
 
     }
 
-    public List<Project> getProjects() {
+    public Set<Project> getProjects() {
         return projects;
     }
 
-    public void setProjects(List<Project> projects) {
+    public void setProjects(Set<Project> projects) {
         this.projects = projects;
     }
 
@@ -94,5 +102,16 @@ public class Employee {
     public void addProject(Project project) {
         this.projects.add(project);
         project.getEmployees().add(this);
+    }
+
+    public void addAddress(Address address){
+        this.addresses = new ArrayList<>();
+        this.addresses.add(address);
+        address.setEmployee(this);
+    }
+
+    public void removeAddress(Address address){
+        this.addresses.remove(address);
+        address.setEmployee(null);
     }
 }

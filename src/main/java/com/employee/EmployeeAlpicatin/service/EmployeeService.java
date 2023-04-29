@@ -1,14 +1,11 @@
 package com.employee.EmployeeAlpicatin.service;
 
-import com.employee.EmployeeAlpicatin.entity.Addresses;
+import com.employee.EmployeeAlpicatin.entity.Address;
 import com.employee.EmployeeAlpicatin.entity.Employee;
-import com.employee.EmployeeAlpicatin.entity.Project;
 import com.employee.EmployeeAlpicatin.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,17 +33,17 @@ public class EmployeeService {
 
     public void createEmployee(Employee employee) {
         //employeeList.add(employee);
-        ArrayList<Addresses> addressesArrayList = new ArrayList<>();
+        ArrayList<Address> addressArrayList = new ArrayList<>();
 
-        for (Addresses addresses : employee.getAddresses()) {
-            addressesArrayList.add((new Addresses(addresses.getLine1(),
-                    addresses.getLine2(),
-                    addresses.getZipCode(),
-                    addresses.getCity(),
-                    addresses.getState(),
-                    addresses.getCountry(), employee)));
+        for (Address address : employee.getAddresses()) {
+            addressArrayList.add((new Address(address.getLine1(),
+                    address.getLine2(),
+                    address.getZipCode(),
+                    address.getCity(),
+                    address.getState(),
+                    address.getCountry(), employee)));
         }
-        employee.setAddresses(addressesArrayList);
+        employee.setAddresses(addressArrayList);
         employeeRepository.save(employee);
     }
 
